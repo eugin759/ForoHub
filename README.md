@@ -43,6 +43,23 @@ Challenge final de la formacion Alura ApiRest
 ```http
   DELETE /topicos/${id}
 ```
+## Links
+
+Dependencias  
+https://www.postman.com/  
+https://spring.io/projects/spring-boot  
+https://www.aluracursos.com/
+
+IDE  
+[IntellliJ](https://www.jetbrains.com/idea/promo/)
+
+
+## Related
+
+Este es el cronograma y especificaciones que se siguieron para el proyecto 
+
+[Trello Foro Hub](https://trello.com/b/9DeAlIsq/foro-hub-challenge-back-end)
+
 
 ## Authors
 
