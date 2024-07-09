@@ -46,18 +46,29 @@ public class TopicoController {
     @GetMapping("/{id}")
     public ResponseEntity<DatosDetalleTopico> retornaDatosTopico(@PathVariable Long id) {
         Topico topico = topicoRepository.getReferenceById(id);
-        var datosTopico = new DatosDetalleTopico(topico.getId(), topico.getMensaje(), topico.getNombreCurso(),
+        var datosTopico = new DatosDetalleTopico(topico.getId(), topico.getUsuario(), topico.getMensaje(), topico.getNombreCurso(),
                 topico.getTitulo(), topico.getActivo(), topico.getFecha());
         return ResponseEntity.ok(datosTopico);
     }
 
-    @PutMapping
+    @PutMapping("/{id}")
     @Transactional
-    public ResponseEntity actualizarTopico(@RequestBody @Valid DatosActualizarTopico datosActualizarTopico) {
-        Topico topico = topicoRepository.getReferenceById(datosActualizarTopico.id());
+    public ResponseEntity actualizarTopico(@PathVariable Long id,
+                                           @RequestBody @Valid DatosActualizarTopico datosActualizarTopico) {
+        Topico topico = topicoRepository.getReferenceById(id);
         topico.actualizarDatos(datosActualizarTopico);
         return ResponseEntity.ok(new DatosDetalleTopico(topico));
     }
+
+//    @PutMapping
+//    @Transactional
+//    public ResponseEntity actualizarTopico(@RequestBody @Valid DatosActualizarTopico datosActualizarTopico) {
+//        Topico topico = topicoRepository.getReferenceById(datosActualizarTopico.id());
+//        topico.actualizarDatos(datosActualizarTopico);
+//        return ResponseEntity.ok(new DatosDetalleTopico(topico));
+//    }
+
+
 
 
 }

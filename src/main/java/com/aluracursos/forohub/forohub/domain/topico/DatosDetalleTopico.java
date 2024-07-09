@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 
 public record DatosDetalleTopico(
         Long id,
-//        Long usuario,
+        String usuario,
         String mensaje,
         String nombreCurso,
         String titulo,
@@ -12,7 +12,7 @@ public record DatosDetalleTopico(
         LocalDateTime fecha
 ) {
     public DatosDetalleTopico(Topico topico){
-        this(topico.getId(), topico.getMensaje(),
+        this(topico.getId(), topico.getUsuario(), topico.getMensaje(),
                 topico.getNombreCurso(), topico.getTitulo(), topico.getActivo(), topico.getFecha());
     }
 }

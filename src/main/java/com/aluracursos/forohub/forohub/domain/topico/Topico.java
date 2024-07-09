@@ -1,5 +1,6 @@
 package com.aluracursos.forohub.forohub.domain.topico;
 
+import com.aluracursos.forohub.forohub.domain.usuarios.Usuario;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -18,11 +19,7 @@ public class Topico {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-//    @ManyToOne(fetch = FetchType.LAZY)
-//    @JoinColumn(name = "usuario_id")
-//    private Usuario usuario;
-
+    private String usuario;
     private String mensaje;
     private String nombreCurso;
     private String titulo;
@@ -35,6 +32,9 @@ public class Topico {
         this.nombreCurso = datosRegistrarTopico.nombreCurso();
         this.titulo = datosRegistrarTopico.titulo();
         this.fecha = LocalDateTime.now();
+        if (datosRegistrarTopico.usuario() == null) {
+            this.usuario = "Anonimo";
+        }else{this.usuario = datosRegistrarTopico.usuario();}
     }
 
     public void cerrarTopico(){
@@ -42,18 +42,7 @@ public class Topico {
     }
 
     public void actualizarDatos(DatosActualizarTopico datosActualizarTopico){
-        if(datosActualizarTopico.mensaje() != null){
             this.mensaje = datosActualizarTopico.mensaje();
-        }
-
-        if(datosActualizarTopico.titulo() != null){
-            this.titulo = datosActualizarTopico.titulo();
-        }
-
-        if(datosActualizarTopico.nombreCurso() != null){
-            this.nombreCurso = datosActualizarTopico.nombreCurso();
-        }
-
     }
 
 }

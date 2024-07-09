@@ -3,8 +3,7 @@ package com.aluracursos.forohub.forohub.domain.topico;
 import jakarta.validation.constraints.NotNull;
 
 public record DatosRegistrarTopico(
-//        @NotNull
-//        Long usuario,
+        String usuario,
         @NotNull
         String mensaje,
         @NotNull
