@@ -12,7 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-@Controller
+@RestController
 @ResponseBody
 @RequestMapping("/topicos")
 @SecurityRequirement(name = "bearer-key")
@@ -47,8 +47,16 @@ public class TopicoController {
     public ResponseEntity<DatosDetalleTopico> retornaDatosTopico(@PathVariable Long id) {
         Topico topico = topicoRepository.getReferenceById(id);
         var datosTopico = new DatosDetalleTopico(topico.getId(), topico.getMensaje(), topico.getNombreCurso(),
-                topico.getTitulo(), topico.getFecha());
+                topico.getTitulo(), topico.getActivo(), topico.getFecha());
         return ResponseEntity.ok(datosTopico);
+    }
+
+    @PutMapping
+    @Transactional
+    public ResponseEntity actualizarTopico(@RequestBody @Valid DatosActualizarTopico datosActualizarTopico) {
+        Topico topico = topicoRepository.getReferenceById(datosActualizarTopico.id());
+        topico.actualizarDatos(datosActualizarTopico);
+        return ResponseEntity.ok(new DatosDetalleTopico(topico));
     }
 
 

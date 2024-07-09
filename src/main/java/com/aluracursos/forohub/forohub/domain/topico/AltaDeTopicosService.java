@@ -1,5 +1,6 @@
 package com.aluracursos.forohub.forohub.domain.topico;
 
+import com.aluracursos.forohub.forohub.domain.topico.validaciones.ValidadorDeConsultas;
 import com.aluracursos.forohub.forohub.domain.usuarios.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,12 +14,12 @@ public class AltaDeTopicosService {
 //    private UsuarioRepository usuarioRepository;
     @Autowired
     private TopicoRepository topicoRepository;
-//    @Autowired
-//    List<ValidadorDeConsultas> validadores;
+    @Autowired
+    List<ValidadorDeConsultas> validadores;
 
     public DatosDetalleTopico altaTopico(DatosRegistrarTopico datosRegistrarTopico){
 
-        //validadores.forEach(v->v.validar(datosDetalleTopico));
+        validadores.forEach(v->v.validar(datosRegistrarTopico));
         var topico = new Topico(datosRegistrarTopico);
         topicoRepository.save(topico);
         return new DatosDetalleTopico(topico);

@@ -8,10 +8,11 @@ public record DatosDetalleTopico(
         String mensaje,
         String nombreCurso,
         String titulo,
+        Boolean activo,
         LocalDateTime fecha
 ) {
     public DatosDetalleTopico(Topico topico){
         this(topico.getId(), topico.getMensaje(),
-                topico.getNombreCurso(), topico.getTitulo(), topico.getFecha());
+                topico.getNombreCurso(), topico.getTitulo(), topico.getActivo(), topico.getFecha());
     }
 }
